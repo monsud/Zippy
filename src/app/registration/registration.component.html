@@ -1,0 +1,176 @@
+<div class="registration_form">
+    <form id="submit" name="sub" #sub="ngForm">
+        <p>Start your adventures in World of Warcraft, free to level 20, with a Blizzard Account.</p>
+        <p>Parents registering for children, <a href="https://www.google.it">click here.</a></p>
+        <select [class.border-error] = 'country.touched && !country.valid'
+                ngModel
+                name="country"
+                #country="ngModel" 
+                id="country_reg" 
+                required
+                class="form-control">
+                <option value="">Select your country</option>
+                <option *ngFor="let country of Country" [ngValue]="country">{{country}}</option>
+        </select>
+        <div class="alert alert-danger" 
+            *ngIf="country.touched && !country.valid">
+            <div *ngIf="country.errors.required">Must select a country</div>
+        </div>
+        <input  [class.border-error] = 'name.touched && !name.valid'
+                ngModel 
+                name="name" 
+                #name="ngModel" 
+                id="name_reg" 
+                type="text" 
+                required placeholder="Name" 
+                class="forntrol"/>
+        <div class="alert alert-danger" 
+            *ngIf="name.touched && !name.valid">
+            <div *ngIf="name.errors.required">Name is mandatory</div>
+        </div>
+        <input  [class.border-error] = 'surname.touched && !surname.valid'
+                ngModel 
+                name="surname" 
+                #surname="ngModel" 
+                id="surname_reg" 
+                type="text" 
+                required placeholder="Surname" 
+                class="form-control"/>
+        <div class="alert alert-danger" 
+            *ngIf="surname.touched && !surname.valid">
+            <div *ngIf="surname.errors.required">Surname is mandatory</div>
+        </div>
+        <div class="birth-picker">
+            <select  [class.border-error] = 'day.touched && !day.valid'
+                ngModel
+                name="day"
+                #day="ngModel" 
+                id="day_reg" 
+                required
+                class="form-control">
+                <option value="">Day of birth</option>
+                <option *ngFor="let date of Date.day" [ngValue]="date" (click)='onSelectedMonth(date)'>{{date}}</option>
+            </select>
+            <div class="alert alert-danger" 
+                *ngIf="day.touched && !day.valid">
+                <div *ngIf="day.errors.required">Day is mandatory</div>
+            </div>
+            <select  [class.border-error] = 'month.touched && !month.valid'
+                ngModel
+                name="month"
+                #month="ngModel" 
+                id="month_reg" 
+                required
+                class="form-control">
+                <option value="">Month of birth</option>
+                <option *ngFor ="let date of Date.month" [ngValue]="date" (click)='onSelectedMonth(date)'>{{date}} </option>
+            </select>
+            <div class="alert alert-danger" 
+                *ngIf="month.touched && !month.valid">
+                <div *ngIf="month.errors.required">Month is mandatory</div>
+            </div>
+            <select  [class.border-error] = 'year.touched && !year.valid'
+                ngModel
+                name="year"
+                #year="ngModel" 
+                id="year_reg" 
+                required
+                class="form-control">
+                <option value="">Year of birth</option>
+                <option *ngFor="let date of Date.year" [ngValue]="date" (click)='onSelectedMonth(date)'>{{date}} </option>
+            </select>
+            <div class="alert alert-danger" 
+                *ngIf="year.touched && !year.valid">
+                <div *ngIf="year.errors.required">Year is mandatory</div>
+            </div>
+        </div>
+        <input  [class.border-error] = 'email.touched && !email.valid'
+                ngModel 
+                name="email" 
+                #email="ngModel" 
+                id="email_reg" 
+                type="email" 
+                required placeholder="Email" 
+                class="form-control"/>
+        <div class="alert alert-danger" 
+            *ngIf="email.touched && !email.valid">
+            <div *ngIf="email.errors.required">Email is mandatory</div>
+        </div>
+        <input  [class.border-error] = 'pass.touched && !pass.valid'
+                ngModel 
+                name="pass" 
+                #pass="ngModel" 
+                id="pass_reg" 
+                type="password" 
+                required placeholder="Password" 
+                required minlength="8" 
+                required maxlength="16"
+                class="form-control"/>
+        <div class="alert alert-danger" 
+            *ngIf="pass.touched && !pass.valid">
+            <div *ngIf="pass.errors.required">Password is mandatory</div>
+            <div *ngIf="pass.errors.minlength">The field must contain at least {{ pass.errors.minlength.requiredLength }} or maximum {{ pass.errors.maxlength.requiredLength }} characters</div>
+            <div *ngIf="pass.errors.cannotContainSpace">Cannot contain spaces</div>
+            <div *ngIf="pass.errors.symbolsOnly">Must contain special symbols</div>
+            <div *ngIf="pass.errors.cannotBeLikeUsernae">Cannot be like your mail</div>
+            <div *ngIf="pass.errors.checkPassowrd">Your password must be like your confirm password</div>
+        </div>
+        <input  [class.border-error] = 'confpass.touched && !confpass.valid'
+            ngModel 
+            name="confpass" 
+            #confpass="ngModel" 
+            id="confpass_reg" 
+            type="password" 
+            required placeholder="Confirm Password" 
+            required minlength="8" 
+            required maxlength="16"
+            class="form-control"/>
+        <div class="alert alert-danger" 
+            *ngIf="confpass.touched && !confpass.valid">
+            <div *ngIf="confpass.errors.required">Password is mandatory</div>
+            <div *ngIf="confpass.errors.checkPassowrd">Your confirm password must be like your password</div>
+        </div>
+        <select  [class.border-error] = 'question.touched && !question.valid'
+            ngModel
+            name="question"
+            #question="ngModel" 
+            id="question_reg" 
+            required
+            class="form-control">
+            <option value="">Select a Question</option>
+            <option *ngFor="let question of Questions" [ngValue]="question">{{question}}</option>
+        </select>
+        <div class="alert alert-danger" 
+            *ngIf="question.touched && !question.valid">
+            <div *ngIf="question.errors.required">Question is mandatory</div>
+        </div>
+        <input  [class.border-error] = 'answer.touched && !answer.valid'
+                ngModel 
+                name="answer" 
+                #answer="ngModel" 
+                id="answer_reg" 
+                type="text" 
+                required placeholder="Secret Answer" 
+                class="form-control"/>
+        <div class="alert alert-danger" 
+                *ngIf="answer.touched && !answer.valid">
+                <div *ngIf="answer.errors.required">Answer is mandatory</div>
+        </div>
+        <div class="checkbox">
+            <input class="checkmark" type="checkbox" [checked]="isChecked1" (change)="changeValue(isChecked1)"/>
+            <div class="info">
+                <p>Receive news and special offers about selected third-party products and services by email.</p>
+                <p id="secondary">Carefully selected news, event information and special offers about thirdy-party products and services.</p>
+            </div>
+        </div>
+        <div class="checkbox">
+            <input class="checkmark" type="checkbox" [checked]="isChecked2" (change)="changeValue(isChecked2)"/>
+            <div class="info">
+                <p>I have reviewed and understand the <a href="https://www.google.it">Privacy Policy.</a></p>
+                <p id="secondary">For more information about how we use information and your rights to object, see our privacy policy.</p>
+            </div>
+        </div>
+        <button id="submitbtn" type="submit">Create your free account</button>
+        <button id="secondbtn" type="submit">Already have an account?</button>
+    </form>
+</div>
